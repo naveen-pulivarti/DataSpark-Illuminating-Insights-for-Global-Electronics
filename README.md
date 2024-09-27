@@ -56,6 +56,17 @@ By analyzing Global Electronics' customer, product, sales, and store data, we ai
 - **Geographical Analysis**: Analyze sales by store location to identify high-performing regions.
 - **Sales Channel Analysis**: Assess the performance of online versus physical stores to understand customer behavior across channels.
 
+## Screenshots of Reports
+Below are the screenshots of the reports generated during the project. These visualizations provide insights into customer demographics, sales performance, store and product analysis.
+
+![Report Screenshot 1](screenshots%20of%20reports/customer%20analysis.png) 
+
+![Report Screenshot 2](screenshots%20of%20reports/sales%20analysis.png) 
+
+![Report Screenshot 3](screenshots%20of%20reports/product%20analysis.png)
+
+![Report Screenshot 3](screenshots%20of%20reports/stores%20analysis.png)
+
 ## Results/Findings
 
 #### 1. Customer Demographics and Behavior
@@ -143,14 +154,3 @@ By analyzing Global Electronics' customer, product, sales, and store data, we ai
 - **Top Three Subcategories by Sales**: 
   - **Bluetooth Headphones**, **Movie DVDs**, and **Desktops**.
 - **Least Profitable Category**: **Games and Toys**.
-
-## Screenshots of Reports
-Below are the screenshots of the reports generated during the project. These visualizations provide insights into customer demographics, sales performance, store and product analysis.
-
-![Report Screenshot 1](screenshots%20of%20reports/customer%20analysis.png) 
-
-![Report Screenshot 2](screenshots%20of%20reports/sales%20analysis.png) 
-
-![Report Screenshot 3](screenshots%20of%20reports/product%20analysis.png)
-
-![Report Screenshot 3](screenshots%20of%20reports/stores%20analysis.png)
