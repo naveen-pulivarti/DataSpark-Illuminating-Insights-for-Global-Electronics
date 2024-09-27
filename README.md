@@ -148,5 +148,9 @@ By analyzing Global Electronics' customer, product, sales, and store data, we ai
 Below are the screenshots of the reports generated during the project. These visualizations provide insights into customer demographics, sales performance, store and product analysis.
 
 ![Report Screenshot 1](screenshots%20of%20reports/customer%20analysis.png) 
+
 ![Report Screenshot 2](screenshots%20of%20reports/sales%20analysis.png) 
+
 ![Report Screenshot 3](screenshots%20of%20reports/product%20analysis.png)
+
+![Report Screenshot 3](screenshots%20of%20reports/stores%20analysis.png)
