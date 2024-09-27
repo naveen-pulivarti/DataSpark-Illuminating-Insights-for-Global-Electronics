@@ -1,0 +1,225 @@
+1) To find total sale quantity and sale amount in USD for each product
+
+SELECT 
+    p.Product_Name, 
+    SUM(s.Quantity) AS Total_Sales,
+    SUM(s.Quantity * p.Unit_Price_USD) AS Revenue_USD
+FROM 
+    DataSpark.sales AS s
+JOIN 
+    DataSpark.products AS p ON s.Product_Key = p.Product_Key
+GROUP BY 
+    p.Product_Name
+ORDER BY 
+    Total_Sales DESC;
+
+
+
+2)To find total sale quantity and sale amount in USD from every country 
+
+SELECT 
+    c.Country,
+    SUM(s.Quantity) AS Total_Sales,
+    SUM(s.Quantity * p.Unit_Price_USD) AS Total_Revenue_USD
+FROM 
+    DataSpark.sales AS s
+JOIN 
+    DataSpark.customers AS c ON s.Customer_Key = c.Customer_Key
+JOIN 
+    DataSpark.products AS p ON s.Product_Key = p.Product_Key
+GROUP BY 
+    c.Country
+ORDER BY 
+    Total_Sales DESC;
+
+
+
+3) To find products with zero sales 
+
+SELECT 
+    Product_Key, Product_Name, Brand, Category
+FROM 
+    DataSpark.products AS p
+WHERE 
+    p.Product_Key NOT IN (SELECT s.Product_Key FROM DataSpark.sales AS s);
+
+
+
+4) To find number of orders with respect to purchase currency for all currencies
+
+SELECT 
+    s.Currency_Code,
+    COUNT(s.Order_Number) AS Total_Sales
+FROM 
+    DataSpark.sales AS s
+GROUP BY 
+    s.Currency_Code
+ORDER BY 
+    Total_Sales DESC;
+
+
+
+5) To find the months in which there is highest business
+
+SELECT 
+    MONTH(s.Order_Date) AS Month,
+    SUM(s.Quantity * p.Unit_Price_USD) AS Total_Revenue_USD
+FROM 
+    DataSpark.sales AS s
+JOIN 
+    DataSpark.products AS p ON s.Product_Key = p.Product_Key
+GROUP BY 
+    Month
+ORDER BY 
+    Month;
+
+
+
+6) To find the profit gained on each order
+
+SELECT 
+    s.Order_Number ,
+    (s.Quantity * p.Unit_Price_USD) - (s.Quantity * p.Unit_Cost_USD) AS Profit
+FROM 
+    DataSpark.sales AS s
+JOIN 
+    DataSpark.products AS p ON s.Product_Key = p.Product_Key;
+
+
+
+7) To find the stores with zero revenue/sales
+
+SELECT 
+    s.Store_Key, s.State
+FROM 
+    Stores s
+LEFT JOIN 
+    Sales sa ON s.Store_Key = sa.Store_Key
+WHERE 
+    sa.Store_Key IS NULL;
+
+
+
+8) To find the whole business insights of each store(Profit, Revenue, no.of.orders, no.of.customers)
+
+WITH SalesData AS (
+    SELECT
+        s.Store_Key,
+        SUM(p.Unit_Price_USD * s.Quantity) AS TotalRevenue,
+        SUM((p.Unit_Price_USD - p.Unit_Cost_USD) * s.Quantity) AS TotalProfit,
+        COUNT(DISTINCT s.Customer_Key) AS NumberOfCustomers,
+        COUNT(s.Order_Number) AS NumberOfOrders
+    FROM
+        sales s
+    JOIN
+        products p ON s.Product_Key = p.Product_Key
+    GROUP BY
+        s.Store_Key
+)
+SELECT
+    s.Store_Key,
+    TotalRevenue,
+    TotalProfit,
+    NumberOfCustomers,
+    NumberOfOrders
+FROM
+    SalesData s
+JOIN
+    stores st ON s.Store_Key = st.Store_Key
+ORDER BY
+    TotalRevenue DESC;
+
+
+
+9) To find the revenue generated from each category
+
+SELECT
+    p.CategoryKey,
+    SUM((pr.Unit_Price_USD - pr.Unit_Cost_USD) * s.Quantity) AS ProfitUSD,
+    SUM(pr.Unit_Price_USD * s.Quantity) AS RevenueUSD
+FROM
+    sales s
+JOIN
+    products pr ON s.Product_Key = pr.Product_Key
+JOIN
+    products p ON pr.CategoryKey = p.CategoryKey
+GROUP BY
+    p.CategoryKey;
+
+
+
+10) To find the revenue generated from each sub category
+
+SELECT
+    p.Subcategory_Key,
+    SUM((pr.Unit_Price_USD - pr.Unit_Cost_USD) * s.Quantity) AS ProfitUSD,
+    SUM(pr.Unit_Price_USD * s.Quantity) AS RevenueUSD
+FROM
+    sales s
+JOIN
+    products pr ON s.Product_Key = pr.Product_Key
+JOIN
+    products p ON pr.CategoryKey = p.CategoryKey
+GROUP BY
+    p.Subcategory_Key;
+
+
+
+11) To find the total sales and revenue in every month from 2016 to 2021
+
+SELECT 
+    DATE_FORMAT(s.Order_Date, '%Y-%m') AS Month,
+    SUM(s.Quantity) AS Total_Sales,
+    SUM(s.Quantity * p.Unit_Price_USD) AS Total_Revenue
+FROM 
+    DataSpark.sales AS s
+JOIN 
+    DataSpark.products AS p ON s.Product_Key = p.Product_Key
+GROUP BY 
+    Month
+ORDER BY 
+    Month;
+
+
+
+12) To find the customers purchasing frequency based on the no of orders
+
+SELECT 
+    c.Customer_Key,
+    c.Name,
+    COUNT(s.Order_Number) AS Purchase_Frequency
+FROM 
+    DataSpark.sales AS s
+JOIN 
+    DataSpark.customers AS c ON s.Customer_Key = c.Customer_Key
+GROUP BY 
+    c.Customer_Key, c.Name
+ORDER BY 
+    Purchase_Frequency DESC;
+
+
+
+13) Customer segmentation based on number of orders ( categories: VIP , Loyal , Occassional )
+
+WITH CustomerOrders AS (
+    SELECT 
+        s.Customer_Key,  
+        COUNT(s.Order_Number) AS OrderCount
+    FROM 
+        DataSpark.sales s  
+    GROUP BY 
+        s.Customer_Key
+)
+SELECT 
+    c.Customer_Key,  -- Corrected column name
+    COALESCE(co.OrderCount, 0) AS OrderCount,
+    CASE
+        WHEN COALESCE(co.OrderCount, 0) > 10 THEN 'VIP Customer'
+        WHEN COALESCE(co.OrderCount, 0) BETWEEN 5 AND 10 THEN 'Loyal Customer'
+        WHEN COALESCE(co.OrderCount, 0) BETWEEN 1 AND 4 THEN 'Occasional Customer'
+        ELSE 'No Orders'
+    END AS CustomerOrderingType
+FROM 
+    DataSpark.customers c  -- Specify the correct schema name
+LEFT JOIN
+    CustomerOrders co ON c.Customer_Key = co.Customer_Key;  -- Corrected column name
