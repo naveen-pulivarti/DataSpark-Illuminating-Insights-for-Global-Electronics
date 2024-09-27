@@ -20,45 +20,45 @@ By analyzing Global Electronics' customer, product, sales, and store data, we ai
 - **Power BI**: Visualization
 
 ## Approach
-### Data Cleaning and Preparation
+#### Data Cleaning and Preparation
 - Check for missing values and handle them appropriately.
 - Convert data types where necessary (e.g., dates, numerical values).
 - Merge datasets where necessary for analysis (e.g., linking sales data with product and customer data).
 
-### Load Data
+#### Load Data
 - Insert the preprocessed data into an SQL database by creating relevant tables for each data source and using SQL INSERT statements to load the data.
 
-### Power BI Visualization
+#### Power BI Visualization
 - Connect SQL to Power BI/Tableau, import the data, and create interactive dashboards.
 
-### Development of SQL and DAX Queries
+#### Development of SQL and DAX Queries
 - Formulate and execute 10 SQL queries to extract key insights from the data. These queries should address important business questions and support the analysis steps below.
 
 ## Analysis Steps
-### Customer Analysis
+#### Customer Analysis
 - **Demographic Distribution**: Analyze the distribution of customers based on gender, age (calculated from birthday), location (city, state, country, continent).
 - **Purchase Patterns**: Identify purchasing patterns such as average order value, frequency of purchases, and preferred products.
 - **Segmentation**: Segment customers based on demographics and purchasing behavior to identify key customer groups.
 
-### Sales Analysis
+#### Sales Analysis
 - **Overall Sales Performance**: Analyze total sales over time, identifying trends and seasonality.
 - **Sales by Product**: Evaluate which products are the top performers in terms of quantity sold and revenue generated.
 - **Sales by Store**: Assess the performance of different stores based on sales data.
 - **Sales by Currency**: Examine how different currencies impact sales figures, considering exchange rates.
 
-### Product Analysis
+#### Product Analysis
 - **Product Popularity**: Identify the most and least popular products based on sales data.
 - **Profitability Analysis**: Calculate profit margins for products by comparing unit cost and unit price.
 - **Category Analysis**: Analyze sales performance across different product categories and subcategories.
 
-### Store Analysis
+#### Store Analysis
 - **Store Performance**: Evaluate store performance based on sales, size (square meters), and operational data (open date).
 - **Geographical Analysis**: Analyze sales by store location to identify high-performing regions.
 - **Sales Channel Analysis**: Assess the performance of online versus physical stores to understand customer behavior across channels.
 
 ## Results/Findings
 
-### 1. Customer Demographics and Behavior
+#### 1. Customer Demographics and Behavior
 - **Age Distribution**: 
   - Customers are evenly distributed across most age groups, with 14-15% in each segment.
   - The **20-30 age group** is slightly underrepresented, making up **10.84%** of customers.
@@ -73,7 +73,7 @@ By analyzing Global Electronics' customer, product, sales, and store data, we ai
   - The **USA** leads with the highest number of customers (**7k out of 15k**).
   - Key cities with a large customer base include **Toronto, New York, and Los Angeles**.
 
-### 2. Customer Segmentation
+#### 2. Customer Segmentation
 - **Loyal Customers (5-10 orders)** contribute to the highest revenue of **27M USD**.
 - **VIP Customers (10+ orders)** generate **15M USD**, while **Occasional Customers (1-4 orders)** contribute **14M USD**.
 - **Customer Breakdown**:
@@ -82,14 +82,14 @@ By analyzing Global Electronics' customer, product, sales, and store data, we ai
   - **8%** are **VIP buyers**.
   - **22%** of customers have **not placed any orders yet**.
 
-### 3. Sales Analysis by Currency
+#### 3. Sales Analysis by Currency
 - **53.6%** of sales are in **USD**, followed by:
   - **EUR: 20.4%**
   - **GBP: 12.7%**
   - **CAD: 8.4%**
   - **AUD: 4.9%**
 
-### 4. Product Analysis
+#### 4. Product Analysis
 - **Top Performing Categories**: 
   - **Computers** and **Cellphones** have the highest sales, followed by **Music, Movies, Audiobooks**, and **Audio**.
   - In the **Computers** category, **Desktops** lead both in sales and revenue.
@@ -111,13 +111,13 @@ By analyzing Global Electronics' customer, product, sales, and store data, we ai
   - The highest profit margin (**66.87%**) is on **Contoso Behind Centrex X15 Grey**.
   - The lowest profit margin (**48.96%**) is on **Contoso In-line Coupler E180 Black**.
 
-### 5. Time-Based Sales Performance
+#### 5. Time-Based Sales Performance
 - **Best Quarters**: **Quarter 1 and Quarter 4** have the highest sales.
 - **Yearly Revenue**: 
   - **2019** was the best year in terms of revenue.
   - Combined revenue from **2018 and 2019** is higher than the total revenue from the other three years.
 
-### 6. Store Performance
+#### 6. Store Performance
 - **Online Store**:
   - Generates **11.4M USD**, which accounts for **21%** of total revenue.
 
@@ -131,12 +131,12 @@ By analyzing Global Electronics' customer, product, sales, and store data, we ai
 - **Store Size Impact**:
   - Stores with more than **2000 square meters** tend to have higher revenues.
 
-### 7. Revenue by Product
+#### 7. Revenue by Product
 - **Quantity-wise**, the highest sold product is **Movie DVDs**.
 - **Revenue-wise**, **Desktops** are the top performers.
 - **Air conditioners** have the lowest quantity sold, and **Boxed games** have the least revenue.
 
-### 8. Overall Summary
+#### 8. Overall Summary
 - **Total Revenue**: **55.76M USD**.
 - **Total Profit**: **32.66M USD**.
 - **Total Products Sold**: **198k**.
